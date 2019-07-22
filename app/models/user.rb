@@ -15,5 +15,5 @@
 #
 
 class User < ApplicationRecord
-  
+  has_one :account, dependent: :nullify
 end

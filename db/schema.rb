@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_191403) do
+ActiveRecord::Schema.define(version: 2019_07_22_112748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "balance_cents", default: 0, null: false
+    t.string "balance_currency", default: "BRL", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.bigint "source_id", null: false
+    t.bigint "destination_id", null: false
+    t.bigint "value_cents", default: 0, null: false
+    t.string "value_currency", default: "BRL", null: false
+    t.bigint "initial_balance_cents", default: 0, null: false
+    t.string "initial_balance_currency", default: "BRL", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_transfers_on_destination_id"
+    t.index ["source_id"], name: "index_transfers_on_source_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.text "first_name", null: false
@@ -24,4 +46,7 @@ ActiveRecord::Schema.define(version: 2019_07_21_191403) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "transfers", "accounts", column: "destination_id"
+  add_foreign_key "transfers", "accounts", column: "source_id"
 end
