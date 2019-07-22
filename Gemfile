@@ -36,6 +36,7 @@ group :development, :test do
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'pry-rails'
+  gem 'timecop'
 end
 
 group :development do
