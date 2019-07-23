@@ -1,5 +1,26 @@
 class ApplicationController < ActionController::API
-  def not_authorized
-    render json: { error: 'not_authorized' }
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  before_action :authorize_request
+
+  attr_reader :current_user
+
+  private
+
+  def record_not_found(exception)
+    render(json: { errors: { exception.model.downcase => "#{exception.model} not found" } }, status: :not_found)
+  end
+
+  def authorize_request
+    header = request.headers['Authorization']
+    token = header&.split(' ')&.last
+
+    begin
+      decoded_token = Security::JsonWebToken.decode(token: token)
+      @current_user = User.find(decoded_token[:payload][:current_user_id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { errors: 'Could not authenticate user.' }, status: :unauthorized
+    rescue JWT::DecodeError
+      render json: { errors: 'Invalid token.' }, status: :unauthorized
+    end
   end
 end
