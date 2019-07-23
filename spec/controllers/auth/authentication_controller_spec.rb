@@ -34,7 +34,7 @@ RSpec.describe Auth::AuthenticationController, type: :controller do
       end
 
       it 'returns authentication error message' do
-        expect(json[:errors]).to eq('Authentication error, check your credentials.')
+        expect(json[:errors]).to eq(['Authentication error, check your credentials.'])
       end
     end
   end

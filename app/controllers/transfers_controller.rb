@@ -9,7 +9,7 @@ class TransfersController < ApplicationController
     if command.success?
       render json: command.result
     else
-      render json: { errors: command.errors }, status: :unprocessable_entity
+      render json: { errors: map_errors(command.errors) }, status: :unprocessable_entity
     end
   end
 

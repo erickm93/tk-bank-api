@@ -56,6 +56,7 @@ RSpec.describe TransfersController, type: :controller do
 
       it 'return errors' do
         expect(json[:errors]).to_not be_empty
+        expect(json[:errors]).to eq(['value format invalid'])
       end
 
       it 'returns status unprocessable_entity' do

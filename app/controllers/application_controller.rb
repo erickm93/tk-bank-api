@@ -4,10 +4,16 @@ class ApplicationController < ActionController::API
 
   attr_reader :current_user
 
+  protected
+
+  def map_errors(errors)
+    Instrumentation::MapCommandErrors.new(errors: errors).map_errors
+  end
+
   private
 
   def record_not_found(exception)
-    render(json: { errors: { exception.model.downcase => "#{exception.model} not found." } }, status: :not_found)
+    render(json: { errors: ["#{exception.model} not found."] }, status: :not_found)
   end
 
   def authorize_request
@@ -18,9 +24,9 @@ class ApplicationController < ActionController::API
       decoded_token = Security::JsonWebToken.decode(token: token)
       @current_user = User.find(decoded_token[:payload][:current_user_id])
     rescue ActiveRecord::RecordNotFound
-      render json: { errors: 'Could not authenticate user.' }, status: :unauthorized
+      render json: { errors: ['Could not authenticate user.'] }, status: :unauthorized
     rescue JWT::DecodeError
-      render json: { errors: 'Invalid token.' }, status: :unauthorized
+      render json: { errors: ['Invalid token.'] }, status: :unauthorized
     end
   end
 end

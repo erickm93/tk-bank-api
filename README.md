@@ -44,11 +44,20 @@ rails s
 ## Specifications
 This is a [Restful](https://restfulapi.net/ "Restful API explanation") API, so it follows it convetions for routes.
 
+### Errors
+
+Error responses will follow this format:
+```json
+{
+  "errors": "[]:string"
+}
+```
+
 ### Authentication Endpoint
 
 #### POST /auth/login
 
-```curl
+```
 curl -X POST \
   http://localhost:3000/auth/login \
   -H 'Content-Type: application/json' \
@@ -57,4 +66,11 @@ curl -X POST \
 		"email": "example@email.com"
 	}
 }'
+```
+
+Response format:
+```json
+{
+  "token": "string:JWT"
+}
 ```

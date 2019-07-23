@@ -15,7 +15,7 @@ RSpec.describe AccountsController, type: :controller do
       end
 
       it 'returns an error' do
-        expect(json[:errors]).to eq('Invalid token.')
+        expect(json[:errors]).to eq(['Invalid token.'])
       end
     end
 
@@ -28,6 +28,22 @@ RSpec.describe AccountsController, type: :controller do
 
       it 'permits the access to the action' do
         expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'with an invalid token' do
+      before do
+        controller.request.headers['Authorization'] = 'Bearer not.valid.token'
+
+        get :show, params: { id: account.id }
+      end
+
+      it 'returns invalid token error message' do
+        expect(json[:errors]).to eq(['Invalid token.'])
+      end
+
+      it 'does not authorize' do
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
