@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   private
 
   def record_not_found(exception)
-    render(json: { errors: { exception.model.downcase => "#{exception.model} not found" } }, status: :not_found)
+    render(json: { errors: { exception.model.downcase => "#{exception.model} not found." } }, status: :not_found)
   end
 
   def authorize_request
