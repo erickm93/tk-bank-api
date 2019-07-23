@@ -1,5 +1,5 @@
 class CreateTransfer < ActiveRecord::Migration[5.2]
-  def change
+  def up
     create_table :transfers do |t|
       t.references :source, index: true, foreign_key: { to_table: :accounts }, null: false
       t.references :destination, index: true, foreign_key: { to_table: :accounts }, null: false
@@ -11,5 +11,9 @@ class CreateTransfer < ActiveRecord::Migration[5.2]
 
     change_column :transfers, :value_cents, :integer, limit: 8
     change_column :transfers, :initial_balance_cents, :integer, limit: 8
+  end
+
+  def down
+    drop_table :transfers
   end
 end

@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_112748) do
     t.string "balance_currency", default: "BRL", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_accounts_on_user_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
   end
 
   create_table "transfers", force: :cascade do |t|
