@@ -20,6 +20,8 @@ user_params.each do |params|
   user_ids.push(User.create!(params).id)
 end
 
+## Accounts
+
 account_params = [
   { balance: Money.new(10000) },
   { balance: Money.new(1000000) },
