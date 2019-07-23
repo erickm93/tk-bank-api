@@ -35,6 +35,10 @@ RSpec.describe AccountsController, type: :controller do
         expect(json[:errors]).to_not be_empty
         expect(json[:errors][:account]).to eq('Account not found')
       end
+
+      it 'returns http status not_found' do
+        expect(response).to have_http_status(:not_found)
+      end
     end
 
     context 'with include_user param' do
