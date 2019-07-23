@@ -1,5 +1,7 @@
 module Auth
   class AuthenticationController < ApplicationController
+    skip_before_action :authorize_request, only: [:login]
+
     def login
       if request_user
         payload = { current_user_id: request_user.id }
@@ -8,7 +10,7 @@ module Auth
         return render(json: { token: token })
       end
 
-      not_authorized
+      render json: { error: 'Authentication error, check your credentials' }
     end
 
     private
