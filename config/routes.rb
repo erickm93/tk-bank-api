@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   namespace :auth do
     post 'login', to: 'authentication#login'
   end
+
+  resources :transfers, only: [:create]
+  resources :accounts, only: [:show]
 end
