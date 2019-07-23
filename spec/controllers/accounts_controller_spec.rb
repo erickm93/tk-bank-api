@@ -16,6 +16,10 @@ RSpec.describe AccountsController, type: :controller do
       get :show, params: params
     end
 
+    it 'returns http status ok' do
+      expect(response).to have_http_status(:ok)
+    end
+
     it 'returns the requested account' do
       expect(json[:account][:id]).to eq(account.id)
     end
