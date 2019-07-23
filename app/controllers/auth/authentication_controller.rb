@@ -10,7 +10,7 @@ module Auth
         return render(json: { token: token })
       end
 
-      render json: { error: 'Authentication error, check your credentials' }
+      render json: { errors: 'Authentication error, check your credentials.' }, status: :unauthorized
     end
 
     private
