@@ -24,6 +24,8 @@
 #
 
 class Transfer < ApplicationRecord
-  belongs_to :source, class_name: 'Account'
-  belongs_to :destination, class_name: 'Account'
+  belongs_to :source, class_name: 'Account', inverse_of: :source_transfers
+  belongs_to :destination, class_name: 'Account', inverse_of: :destination_transfers
+
+  monetize :value_cents, :initial_balance_cents
 end

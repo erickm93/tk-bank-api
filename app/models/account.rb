@@ -11,7 +11,7 @@
 #
 # Indexes
 #
-#  index_accounts_on_user_id  (user_id)
+#  index_accounts_on_user_id  (user_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -20,5 +20,10 @@
 
 class Account < ApplicationRecord
   belongs_to :user
-  has_many :transfers, dependent: :destroy
+  has_many :source_transfers, class_name: 'Transfer',
+                              dependent: :destroy, foreign_key: :source_id, inverse_of: :source
+  has_many :destination_transfers, class_name: 'Transfer',
+                                   dependent: :destroy, foreign_key: :destination_id, inverse_of: :destination
+
+  monetize :balance_cents
 end
