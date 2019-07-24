@@ -27,6 +27,8 @@ class ApplicationController < ActionController::API
       render json: { errors: ['Could not authenticate user.'] }, status: :unauthorized
     rescue JWT::DecodeError
       render json: { errors: ['Invalid token.'] }, status: :unauthorized
+    rescue JWT::ExpiredSignature
+      render json: { errors: ['Expired token.'] }, status: :unauthorized
     end
   end
 end
