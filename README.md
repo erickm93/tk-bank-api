@@ -86,7 +86,7 @@ curl -X POST \
   }'
 ```
 
-Payload format:
+Body format:
 ```json
 {
   "user": {
@@ -171,7 +171,7 @@ curl -X POST \
   }'
 ```
 
-Payload format:
+Body format:
 - Value format: '00.00'
   - where the decimals are separated with dot ('.'). 
 
