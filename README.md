@@ -160,7 +160,6 @@ Returns the created transfer with the accounts related included.
 ```
 curl -X POST \
   http://localhost:3000/transfers \
-  -H 'Accept: */*' \
   -H 'Authorization: Bearer :JWT' \
   -H 'Content-Type: application/json' \
   -d '{
