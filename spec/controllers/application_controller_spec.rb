@@ -46,5 +46,21 @@ RSpec.describe AccountsController, type: :controller do
         expect(response).to have_http_status(:unauthorized)
       end
     end
+
+    context 'with an expired token' do
+      before do
+        set_jwt_header(account.user, Time.now.to_i)
+
+        get :show, params: { id: account.id }
+      end
+
+      it 'does not authorize' do
+        expect(response).to have_http_status(:unauthorized)
+      end
+
+      it 'returns expired token error message' do
+        expect(json[:errors]).to eq(['Expired token.'])
+      end
+    end
   end
 end
