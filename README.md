@@ -89,8 +89,8 @@ curl -X POST \
 Payload format:
 ```json
 {
-	"user": {
-		"email": "string"
+  "user": {
+    "email": "string"
   }
 }
 ```
