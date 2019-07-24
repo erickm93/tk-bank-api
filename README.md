@@ -80,10 +80,10 @@ curl -X POST \
   http://localhost:3000/auth/login \
   -H 'Content-Type: application/json' \
   -d '{
-	"user": {
-		"email": "example@email.com"
-	}
-}'
+    "user": {
+      "email": "example@email.com"
+    }
+  }'
 ```
 
 Payload format:
@@ -163,12 +163,12 @@ curl -X POST \
   -H 'Authorization: Bearer :JWT' \
   -H 'Content-Type: application/json' \
   -d '{
-	"transfer": {
-		"value": "10.00",
-		"destination_id": "1",
-		"source_id": "2"
-	}
-}'
+    "transfer": {
+      "value": "10.00",
+      "destination_id": "1",
+      "source_id": "2"
+    }
+  }'
 ```
 
 Payload format:
@@ -177,34 +177,34 @@ Payload format:
 
 ```json
 {
-	"transfer": {
-		"value": ":value_format:string",
-		"destination_id": "number",
-		"source_id": "number"
-	}
+  "transfer": {
+    "value": ":value_format:string",
+    "destination_id": "number",
+    "source_id": "number"
+  }
 }
 ```
 
 Response format:
 ```json
 {
-    "transfer": {
-        "id": "number",
-        "initial_balance_cents": "number",
-        "value_cents": "number",
-        "initial_balance": "formated_currency_value:string",
-        "value": "formated_currency_value:string",
-        "destination": {
-            "id": "number",
-            "balance_cents": "number",
-            "balance": "formated_currency_value:string"
-        },
-        "source": {
-            "id": "number",
-            "balance_cents": "number",
-            "balance": "formated_currency_value:string"
-        }
+  "transfer": {
+    "id": "number",
+    "initial_balance_cents": "number",
+    "value_cents": "number",
+    "initial_balance": "formated_currency_value:string",
+    "value": "formated_currency_value:string",
+    "destination": {
+      "id": "number",
+      "balance_cents": "number",
+      "balance": "formated_currency_value:string"
+    },
+    "source": {
+      "id": "number",
+      "balance_cents": "number",
+      "balance": "formated_currency_value:string"
     }
+  }
 }
 ```
 ## Tests
