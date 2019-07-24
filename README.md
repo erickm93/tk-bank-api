@@ -6,7 +6,7 @@ To contribute with this project please refer to [Contribution Guidelines](https:
 
 ## Introduction
 
-An API that handles money transfer from between user accounts.
+An API that handles money transfers between user accounts.
 
 ### Features
 
