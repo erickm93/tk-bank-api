@@ -114,7 +114,7 @@ Returns a account.
 
 ```
 curl -X GET \
-  http://localhost:3000/accounts/:account_id \
+  http://localhost:3000/accounts/1 \
   -H 'Authorization: Bearer :JWT'
 ```
 
