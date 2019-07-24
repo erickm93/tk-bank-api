@@ -71,7 +71,7 @@ curl -X GET \
 ### Authentication Endpoint
 
 Authenticate an user using its email.
-Returns a JWT.
+Returns a JWT with a lifespan of 24hrs.
 
 #### POST /auth/login
 
