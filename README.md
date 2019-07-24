@@ -121,11 +121,11 @@ curl -X GET \
 Response format:
 ```json
 {
-    "account": {
-        "id": "number",
-        "balance_cents": "number",
-        "balance": "formated_balance_value:string"
-    }
+  "account": {
+    "id": "number",
+    "balance_cents": "number",
+    "balance": "formated_balance_value:string"
+  }
 }
 ```
 
@@ -136,17 +136,17 @@ Response format:
 Response format:
 ```json
 {
-    "account": {
-        "id": "number",
-        "balance_cents": "number",
-        "balance": "formated_currency_value:string",
-        "user": {
-            "id": "number",
-            "email": "string",
-            "first_name": "string",
-            "last_name": "string"
-        }
+  "account": {
+    "id": "number",
+    "balance_cents": "number",
+    "balance":"formated_currency_value:string",
+    "user": {
+      "id": "number",
+      "email": "string",
+      "first_name": "string",
+      "last_name": "string"
     }
+  }
 }
 ```
 
