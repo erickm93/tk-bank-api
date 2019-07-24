@@ -252,3 +252,7 @@ CreateTransfer
 ```
 
 If the text from the output is green :green_heart: means that the test passed and a red :red_circle: text means that it failed.
+
+## License
+
+Licensed under the MIT license, see the separate LICENSE file.
